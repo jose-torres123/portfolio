@@ -1,0 +1,77 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CMD=$(cat | jq -r .tool_input.command 2>/dev/null); for p in \"rm -rf /\" \"rm -rf ~\" \"service_role\" \"SUPABASE_SERVICE_ROLE\" \"DROP TABLE\" \"DROP DATABASE\" \"git push --force\" \"git push -f \" \"npm publish\"; do if echo \"$CMD\" | grep -qi \"$p\"; then echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"Blocked: dangerous pattern\\\"}}\"; exit 0; fi; done; exit 0'"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "Glob",
+      "Grep",
+      "Bash(pnpm *)",
+      "Bash(pnpm)",
+      "Bash(npx *)",
+      "Bash(turbo *)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(supabase *)",
+      "Bash(git status*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git add *)",
+      "Bash(git add .)",
+      "Bash(git add -A)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git merge *)",
+      "Bash(git stash*)",
+      "Bash(cat *)",
+      "Bash(cat)",
+      "Bash(ls *)",
+      "Bash(ls)",
+      "Bash(ls)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(wc *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(sort *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(echo *)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(jq *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Bash(cd *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)*",
+      "Bash(*service_role*)",
+      "Bash(*SUPABASE_SERVICE_ROLE*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(npm publish*)",
+      "Bash(rm -rf ~*)"
+    ]
+  }
+}
