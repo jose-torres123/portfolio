@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n/index.js";
 import { LanguageSwitcher } from "./LanguageSwitcher.js";
+import { ThemeToggle } from "./ThemeToggle.js";
 
 const NAV_KEYS = ["home", "about", "projects", "skills", "experience", "contact"] as const;
 
@@ -99,10 +100,14 @@ export function Navbar(): React.JSX.Element {
           <li className="ml-2">
             <LanguageSwitcher />
           </li>
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
 
         {/* Mobile: switcher + toggle */}
         <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
           <LanguageSwitcher />
           <button
             type="button"

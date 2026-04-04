@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter } from "react-router-dom";
 import "@/styles/globals.css";
 import { I18nProvider } from "@/lib/i18n/index.js";
+import { ThemeProvider } from "@/lib/theme/index.js";
 import { App } from "./app/App.js";
 
 const queryClient = new QueryClient({
@@ -26,13 +27,15 @@ if (!rootElement) throw new Error("Root element not found");
 
 createRoot(rootElement).render(
   <StrictMode>
-    <I18nProvider>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </I18nProvider>
+    <ThemeProvider>
+      <I18nProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </I18nProvider>
+    </ThemeProvider>
   </StrictMode>
 );

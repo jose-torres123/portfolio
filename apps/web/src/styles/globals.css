@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* Base */
+  /* Base — Light */
   --color-background: hsl(240 20% 97%);
   --color-foreground: hsl(240 10% 10%);
   --color-card: hsl(0 0% 100%);
@@ -36,21 +38,20 @@
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  @theme {
-    --color-background: hsl(240 15% 8%);
-    --color-foreground: hsl(0 0% 95%);
-    --color-card: hsl(240 15% 12%);
-    --color-card-foreground: hsl(0 0% 95%);
-    --color-muted: hsl(240 10% 18%);
-    --color-muted-foreground: hsl(240 5% 64%);
-    --color-border: hsl(240 10% 20%);
-    --color-input: hsl(240 10% 20%);
+/* Dark mode via .dark class on <html> */
+.dark {
+  --color-background: hsl(240 15% 8%);
+  --color-foreground: hsl(0 0% 95%);
+  --color-card: hsl(240 15% 12%);
+  --color-card-foreground: hsl(0 0% 95%);
+  --color-muted: hsl(240 10% 18%);
+  --color-muted-foreground: hsl(240 5% 64%);
+  --color-border: hsl(240 10% 20%);
+  --color-input: hsl(240 10% 20%);
 
-    --color-primary: hsl(262 83% 65%);
-    --color-secondary: hsl(330 81% 65%);
-    --color-accent: hsl(190 95% 50%);
-  }
+  --color-primary: hsl(262 83% 65%);
+  --color-secondary: hsl(330 81% 65%);
+  --color-accent: hsl(190 95% 50%);
 }
 
 * {
