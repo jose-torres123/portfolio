@@ -619,33 +619,47 @@ pnpm turbo run build --graph      # Visualizar dependency graph
 <!-- ═══════════════════════════════════════════════════════════ -->
 
 ### Nombre del Proyecto
-[NOMBRE]
+Portfolio + CMS
 
 ### Descripción
-[Qué hace el proyecto, en una oración]
+Platform personal portfolio con CMS headless para gestionar proyectos, posts, y contenido dinámico.
 
 ### Dominio de Negocio
-[e-commerce, SaaS, fintech, etc.]
+Personal branding / Content Management
 
 ### Repositorio GitHub
-[URL del repo]
+https://github.com/[usuario]/portfolio
 
 ### URLs de Deploy
-- **Production**: [URL Vercel producción]
-- **Staging**: [URL Vercel preview]
-- **Supabase Dashboard**: [URL]
+- **Production**: https://portfolio-prod.vercel.app
+- **Staging**: https://portfolio-staging.vercel.app
+- **Supabase Dashboard**: https://app.supabase.com/project/[project-id]
 
 ### Tablas Principales de Supabase
-<!-- Listar tablas y relaciones -->
+- `projects` — Portafolio de proyectos
+- `posts` — Blog posts
+- `tags` — Tags para clasificar contenido
+- `profiles` — Perfiles de usuario
 
 ### Reglas de Negocio Críticas
-<!-- Reglas que NUNCA deben violarse -->
+- Contenido debe ser validado antes de publicar
+- Imágenes deben tener máximo 5MB y ser optimizadas
+- Publicación debe estar en futuro si es programada
+- Eliminación de contenido debe ser soft-delete (archivado)
 
 ### APIs Externas / Integraciones
-<!-- Servicios externos con los que se integra -->
+- GitHub API — para stats de repos
+- OpenAI API — para generación de descripciones (opcional)
 
 ### Restricciones Técnicas
-<!-- Cualquier restricción especial del proyecto -->
+- No más de 5MB por imagen
+- POST/PUT requests no deben exceder 10s
+- Rate limit: 60 req/min por IP
 
 ### TODO / Roadmap Activo
-<!-- Estado actual — mantener actualizado -->
+- [x] Monorepo base inicializado
+- [ ] Feature portfolio — listar y detallar proyectos
+- [ ] Feature blog — crear/editar/publicar posts
+- [ ] Sistema de autenticación
+- [ ] CMS dashboard
+- [ ] API de estadísticas
