@@ -35,6 +35,9 @@ coverage/
 # nyc test coverage
 .nyc_output
 
+# Playwright test results
+.playwright-mcp
+
 # Dependency directories
 jspm_packages/
 

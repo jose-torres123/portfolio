@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base */
+  --color-background: hsl(240 20% 97%);
+  --color-foreground: hsl(240 10% 10%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(240 10% 10%);
+  --color-muted: hsl(240 10% 92%);
+  --color-muted-foreground: hsl(240 5% 46%);
+  --color-border: hsl(240 10% 90%);
+  --color-input: hsl(240 10% 90%);
+  --color-ring: hsl(262 83% 58%);
+
+  /* Colorful palette */
+  --color-primary: hsl(262 83% 58%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(330 81% 60%);
+  --color-secondary-foreground: hsl(0 0% 100%);
+  --color-accent: hsl(190 95% 39%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84% 60%);
+
+  /* Gradient stops */
+  --color-gradient-start: hsl(262 83% 58%);
+  --color-gradient-mid: hsl(330 81% 60%);
+  --color-gradient-end: hsl(25 95% 53%);
+
+  /* Extra accents */
+  --color-cyan: hsl(190 95% 39%);
+  --color-emerald: hsl(160 84% 39%);
+  --color-amber: hsl(38 92% 50%);
+
+  --radius: 0.75rem;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: hsl(240 15% 8%);
+    --color-foreground: hsl(0 0% 95%);
+    --color-card: hsl(240 15% 12%);
+    --color-card-foreground: hsl(0 0% 95%);
+    --color-muted: hsl(240 10% 18%);
+    --color-muted-foreground: hsl(240 5% 64%);
+    --color-border: hsl(240 10% 20%);
+    --color-input: hsl(240 10% 20%);
+
+    --color-primary: hsl(262 83% 65%);
+    --color-secondary: hsl(330 81% 65%);
+    --color-accent: hsl(190 95% 50%);
+  }
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: hsl(262 83% 58% / 0.3);
+}
