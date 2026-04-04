@@ -3,10 +3,10 @@ import { useI18n } from "@/lib/i18n/index.js";
 import { TimelineItem } from "./TimelineItem.js";
 
 const EXPERIENCE_TECH: string[][] = [
-  ["React", "TypeScript", "Next.js", "GraphQL", "Tailwind"],
-  ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
-  ["React", "Vue.js", "SASS", "Webpack", "REST APIs"],
-  ["JavaScript", "HTML/CSS", "jQuery", "Bootstrap", "PHP"],
+  ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind", "Playwright", "SonarQube"],
+  ["Laravel", "PHP", "WordPress", "PostgreSQL", "REST APIs"],
+  ["React Native", "Node.js", "Express.js", "React.js", "TypeScript"],
+  ["Laravel", "CodeIgniter", "PHP", "Ionic", "MySQL"],
 ];
 
 export function ExperienceSection(): React.JSX.Element {

@@ -10,9 +10,9 @@ const CATEGORY_STYLES: { color: string; chipColor: string }[] = [
 ];
 
 const CATEGORY_SKILLS: string[][] = [
-  ["React", "TypeScript", "Tailwind CSS", "Next.js", "Framer Motion", "HTML/CSS"],
-  ["Node.js", "Express", "PostgreSQL", "Redis", "Docker", "REST APIs"],
-  ["Git", "VS Code", "Figma", "Vercel", "Supabase", "GitHub Actions"],
+  ["React.js", "Next.js", "TypeScript", "Svelte", "shadcn/ui", "Redux.js", "Tailwind CSS", "Zod"],
+  ["Node.js", "Express.js", "GraphQL", "RESTful APIs", "React Query", "Apollo", "Docker", "PostgreSQL", "MySQL"],
+  ["Git", "CI/CD", "SonarQube", "Playwright", "Agile", "React Native", "Ionic", "MCP", "AI-Assisted Dev"],
 ];
 
 const containerVariants = {

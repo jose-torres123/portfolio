@@ -9,7 +9,7 @@ const STAT_ICONS: React.JSX.Element[] = [
   <Globe className="size-5" key="globe" />,
 ];
 
-const STAT_VALUES = ["5+", "10+", "∞", "3+"];
+const STAT_VALUES = ["7+", "4", "∞", "3+"];
 
 const HIGHLIGHT_COLORS = [
   "text-primary bg-primary/10",

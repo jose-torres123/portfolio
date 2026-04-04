@@ -70,7 +70,7 @@ export function Navbar(): React.JSX.Element {
           href="#hero"
           className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent lg:text-2xl"
         >
-          Jose
+          José Torres
         </a>
 
         {/* Desktop links */}

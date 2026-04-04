@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n/index.js";
 
 const CONTACT_LINKS: { label: string; value: string; href: string; icon: React.JSX.Element; color: string }[] = [
-  { label: "Email", value: "hello@jose.dev", href: "mailto:hello@jose.dev", icon: <Mail className="size-6" />, color: "hover:border-primary/50 hover:text-primary" },
-  { label: "GitHub", value: "github.com/jose", href: "https://github.com/jose", icon: <Github className="size-6" />, color: "hover:border-secondary/50 hover:text-secondary" },
-  { label: "LinkedIn", value: "linkedin.com/in/jose", href: "https://linkedin.com/in/jose", icon: <Linkedin className="size-6" />, color: "hover:border-accent/50 hover:text-accent" },
-  { label: "Twitter", value: "@jose_dev", href: "https://twitter.com/jose_dev", icon: <Twitter className="size-6" />, color: "hover:border-amber/50 hover:text-amber" },
+  { label: "Email", value: "joseprox16@gmail.com", href: "mailto:joseprox16@gmail.com", icon: <Mail className="size-6" />, color: "hover:border-primary/50 hover:text-primary" },
+  { label: "GitHub", value: "github.com/jose-torres123", href: "https://github.com/jose-torres123", icon: <Github className="size-6" />, color: "hover:border-secondary/50 hover:text-secondary" },
+  { label: "LinkedIn", value: "jose-torres-ad13", href: "https://www.linkedin.com/in/jose-torres-ad13", icon: <Linkedin className="size-6" />, color: "hover:border-accent/50 hover:text-accent" },
+  { label: "Location", value: "Lara, Venezuela", href: "#contact", icon: <MapPin className="size-6" />, color: "hover:border-amber/50 hover:text-amber" },
 ];
 
 const containerVariants = {
@@ -53,8 +53,8 @@ export function ContactSection(): React.JSX.Element {
               key={link.label}
               variants={cardVariants}
               href={link.href}
-              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+              target={link.href.startsWith("mailto:") || link.href.startsWith("#") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") || link.href.startsWith("#") ? undefined : "noopener noreferrer"}
               className={`group flex flex-col items-center gap-3 rounded-xl border border-border/50 bg-card/80 p-6 backdrop-blur-sm transition-all ${link.color}`}
             >
               <div className="text-muted-foreground transition-colors">
@@ -74,7 +74,7 @@ export function ContactSection(): React.JSX.Element {
           className="mt-12 text-center"
         >
           <a
-            href="mailto:hello@jose.dev"
+            href="mailto:joseprox16@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end px-8 py-3 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl hover:shadow-primary/25"
           >
             <Mail className="size-4" />

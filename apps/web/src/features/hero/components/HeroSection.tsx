@@ -63,7 +63,7 @@ export function HeroSection(): React.JSX.Element {
           className="mb-4 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
         >
           <span className="bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end bg-clip-text text-transparent">
-            Jose
+            José Torres
           </span>
         </motion.h1>
 

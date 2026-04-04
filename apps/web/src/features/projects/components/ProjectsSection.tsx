@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/index.js";
 import { ProjectCard } from "./ProjectCard.js";
 
-const PROJECT_META: { tags: string[]; github?: string; live?: string; featured: boolean }[] = [
-  { tags: ["React", "Node.js", "Stripe", "PostgreSQL"], github: "#", live: "#", featured: true },
-  { tags: ["Next.js", "Prisma", "PostgreSQL", "WebSocket"], github: "#", live: "#", featured: true },
-  { tags: ["React", "Chart.js", "OpenWeather API"], github: "#", live: "#", featured: false },
-  { tags: ["Socket.io", "Express", "MongoDB", "React"], github: "#", featured: false },
-  { tags: ["React", "Tailwind", "Framer Motion"], github: "#", live: "#", featured: true },
-  { tags: ["Node.js", "Redis", "Docker", "Nginx"], github: "#", featured: false },
+const PROJECT_META: { tags: string[]; github?: string | undefined; live?: string | undefined; featured: boolean }[] = [
+  { tags: ["React.js", "TypeScript", "Node.js", "PostgreSQL"], featured: true },
+  { tags: ["Laravel", "PHP", "PostgreSQL", "Stripe"], featured: true },
+  { tags: ["WordPress", "PHP", "REST APIs"], featured: false },
+  { tags: ["React Native", "TypeScript", "iOS", "Android"], featured: true },
+  { tags: ["React", "Tailwind CSS", "Framer Motion", "i18n"], github: "https://github.com/jose-torres123", live: "#", featured: true },
+  { tags: ["Ionic", "Laravel", "CodeIgniter", "REST APIs"], featured: false },
 ];
 
 const containerVariants = {

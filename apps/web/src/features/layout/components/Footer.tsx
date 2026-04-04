@@ -1,10 +1,10 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n/index.js";
 
 const SOCIAL_LINKS: { label: string; href: string; icon: React.JSX.Element }[] = [
-  { label: "GitHub", href: "https://github.com/jose", icon: <Github className="size-5" /> },
-  { label: "LinkedIn", href: "https://linkedin.com/in/jose", icon: <Linkedin className="size-5" /> },
-  { label: "Twitter", href: "https://twitter.com/jose", icon: <Twitter className="size-5" /> },
+  { label: "GitHub", href: "https://github.com/jose-torres123", icon: <Github className="size-5" /> },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-torres-ad13", icon: <Linkedin className="size-5" /> },
+  { label: "Email", href: "mailto:joseprox16@gmail.com", icon: <Mail className="size-5" /> },
 ];
 
 export function Footer(): React.JSX.Element {
@@ -16,15 +16,15 @@ export function Footer(): React.JSX.Element {
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-6">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Jose. {t.footer.rights}
+            &copy; {new Date().getFullYear()} José Torres. {t.footer.rights}
           </p>
           <div className="flex items-center gap-4">
             {SOCIAL_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                 aria-label={link.label}
                 className="rounded-lg p-2 text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
               >
