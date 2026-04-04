@@ -1,23 +1,17 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { PortfolioList } from '../components/PortfolioList'
 import { PortfolioDetail } from '../components/PortfolioDetail'
 import type { PortfolioDetailData } from '../types'
-import { mockPortfolios } from '../data/mockData'
+import { mockPortfolios, mockPortfolioDetails } from '../data/mockData'
 
 export default function PortfolioPage() {
   const { id } = useParams<{ id: string }>()
   const [selectedId, setSelectedId] = useState<string | null>(id || null)
 
   if (selectedId) {
-    const portfolio = mockPortfolios.find(p => p.id === selectedId)
-    if (!portfolio) return <div>Not found</div>
-
-    const detail: PortfolioDetailData = {
-      ...portfolio,
-      content: portfolio.content || '',
-      featured: portfolio.featured !== undefined ? portfolio.featured : false,
-    }
+    const detail = mockPortfolioDetails[selectedId]
+    if (!detail) return <div>Not found</div>
 
     return (
       <div>

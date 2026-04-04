@@ -10,7 +10,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/portfolio/:id" element={<div>Portfolio Detail - TODO</div>} />
+        <Route path="/portfolio/:id" element={<PortfolioPage />} />
         <Route path="/blog" element={<div>Blog - TODO</div>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
