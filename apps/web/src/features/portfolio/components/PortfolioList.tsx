@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@repo/ui'
+import { Card, CardContent, CardHeader, CardTitle } from '@/lib/ui'
 import { Github, ExternalLink } from 'lucide-react'
 import type { Portfolio } from '../types'
 

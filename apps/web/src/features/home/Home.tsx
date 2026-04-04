@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Button } from '@repo/ui'
+import { Button } from '@/lib/ui'
 import { ArrowRight } from 'lucide-react'
 
 export default function Home() {

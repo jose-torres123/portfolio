@@ -1,7 +1,7 @@
 import { useForm, type UseFormReturn } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createPortfolioSchema, updatePortfolioSchema, type CreatePortfolioInput, type UpdatePortfolioInput } from '../types'
-import type { PortfolioDetail } from '../types'
+import type { PortfolioDetailData } from '../types'
 
 export function useCreatePortfolioForm(): UseFormReturn<CreatePortfolioInput> {
   return useForm<CreatePortfolioInput>({
@@ -20,7 +20,7 @@ export function useCreatePortfolioForm(): UseFormReturn<CreatePortfolioInput> {
 }
 
 export function useUpdatePortfolioForm(
-  portfolio: PortfolioDetail | null | undefined,
+  portfolio: PortfolioDetailData | null | undefined,
 ): UseFormReturn<UpdatePortfolioInput> {
   return useForm<UpdatePortfolioInput>({
     resolver: zodResolver(updatePortfolioSchema),

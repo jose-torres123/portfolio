@@ -16,7 +16,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@repo/ui'
+} from '@/lib/ui'
 import { motion } from 'framer-motion'
 
 export function LoginForm() {

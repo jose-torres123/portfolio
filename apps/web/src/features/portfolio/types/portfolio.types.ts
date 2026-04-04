@@ -15,7 +15,7 @@ export interface Portfolio {
   updated_at: string
 }
 
-export interface PortfolioDetail extends Portfolio {
+export interface PortfolioDetailData extends Portfolio {
   content: string
   featured: boolean
 }

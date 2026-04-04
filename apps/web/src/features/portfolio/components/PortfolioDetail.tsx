@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle, Button } from '@repo/ui'
+import { Card, CardContent, CardHeader, CardTitle, Button } from '@/lib/ui'
 import { ExternalLink, Github } from 'lucide-react'
-import type { PortfolioDetail } from '../types'
+import type { PortfolioDetailData } from '../types'
 
 interface PortfolioDetailProps {
-  portfolio: PortfolioDetail
+  portfolio: PortfolioDetailData
   onClose: () => void
   onEdit?: (id: string) => void
 }

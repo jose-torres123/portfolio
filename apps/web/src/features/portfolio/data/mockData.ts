@@ -1,4 +1,4 @@
-import type { Portfolio, PortfolioDetail } from '../types'
+import type { Portfolio, PortfolioDetailData } from '../types'
 
 export const mockPortfolios: Portfolio[] = [
   {
@@ -69,7 +69,7 @@ export const mockPortfolios: Portfolio[] = [
   },
 ]
 
-export const mockPortfolioDetail: PortfolioDetail = {
+export const mockPortfolioDetailData: PortfolioDetailData = {
   id: '1',
   title: 'E-Commerce Platform',
   description: 'Full-stack e-commerce platform with real-time inventory management',

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '@repo/ui'
+import { Card, CardContent, CardHeader } from '@/lib/ui'
 
 export function PortfolioSkeleton() {
   return (

@@ -1,16 +1,23 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PortfolioList } from '../components/PortfolioList'
-import { PortfolioDetail as PortfolioDetailComponent } from '../components/PortfolioDetail'
-import { mockPortfolios, mockPortfolioDetail } from '../data/mockData'
+import { PortfolioDetail } from '../components/PortfolioDetail'
+import type { PortfolioDetailData } from '../types'
+import { mockPortfolios } from '../data/mockData'
 
 export default function PortfolioPage() {
   const { id } = useParams<{ id: string }>()
   const [selectedId, setSelectedId] = useState<string | null>(id || null)
 
   if (selectedId) {
-    const detail = id === selectedId ? mockPortfolioDetail : mockPortfolios.find(p => p.id === selectedId)
-    if (!detail) return <div>Not found</div>
+    const portfolio = mockPortfolios.find(p => p.id === selectedId)
+    if (!portfolio) return <div>Not found</div>
+
+    const detail: PortfolioDetailData = {
+      ...portfolio,
+      content: portfolio.content || '',
+      featured: portfolio.featured !== undefined ? portfolio.featured : false,
+    }
 
     return (
       <div>
@@ -20,8 +27,8 @@ export default function PortfolioPage() {
         >
           ← Back to Portfolio
         </button>
-        <PortfolioDetailComponent
-          portfolio={detail as any}
+        <PortfolioDetail
+          portfolio={detail}
           onClose={() => setSelectedId(null)}
         />
       </div>

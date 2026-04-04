@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle, Button, Input } from '@repo/ui'
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@repo/ui'
+import { Card, CardContent, CardHeader, CardTitle, Button, Input } from '@/lib/ui'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/lib/ui'
 import { useCreatePortfolioForm, usePortfolioMutations } from '../hooks'
 import type { CreatePortfolioInput } from '../types'
 

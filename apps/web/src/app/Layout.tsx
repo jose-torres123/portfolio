@@ -1,11 +1,7 @@
-import { ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-interface LayoutProps {
-  children: ReactNode
-}
-
-export function Layout({ children }: LayoutProps) {
+export function Layout() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
@@ -30,7 +26,7 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-8">
-        {children}
+        <Outlet />
       </main>
 
       {/* Footer */}

@@ -1,5 +1,5 @@
 import { supabase } from '@repo/supabase'
-import type { Portfolio, PortfolioDetail, CreatePortfolioInput, UpdatePortfolioInput } from '../types'
+import type { Portfolio, PortfolioDetailData, CreatePortfolioInput, UpdatePortfolioInput } from '../types'
 
 const TABLE = 'projects'
 
@@ -8,7 +8,7 @@ export const portfolioService = {
    * Obtener lista de portfolios
    */
   async listPortfolios(): Promise<Portfolio[]> {
-    const { data, error } = await supabase
+    const { data, error } = await supabase()
       .from(TABLE)
       .select('id, title, description, image_url, technologies, github_url, live_url, created_at, updated_at')
       .order('created_at', { ascending: false })
@@ -20,22 +20,22 @@ export const portfolioService = {
   /**
    * Obtener portafolio por ID
    */
-  async getPortfolio(id: string): Promise<PortfolioDetail | null> {
-    const { data, error } = await supabase
+  async getPortfolio(id: string): Promise<PortfolioDetailData | null> {
+    const { data, error } = await supabase()
       .from(TABLE)
       .select('*')
       .eq('id', id)
       .single()
 
     if (error) throw error
-    return data as PortfolioDetail | null
+    return data as PortfolioDetailData | null
   },
 
   /**
    * Crear nuevo portafolio
    */
   async createPortfolio(input: CreatePortfolioInput): Promise<Portfolio> {
-    const { data, error } = await supabase
+    const { data, error } = await supabase()
       .from(TABLE)
       .insert([input])
       .select()
@@ -49,7 +49,7 @@ export const portfolioService = {
    * Actualizar portafolio
    */
   async updatePortfolio(id: string, input: UpdatePortfolioInput): Promise<Portfolio> {
-    const { data, error } = await supabase
+    const { data, error } = await supabase()
       .from(TABLE)
       .update(input)
       .eq('id', id)
@@ -64,7 +64,7 @@ export const portfolioService = {
    * Eliminar portafolio (soft-delete)
    */
   async deletePortfolio(id: string): Promise<void> {
-    const { error } = await supabase
+    const { error } = await supabase()
       .from(TABLE)
       .update({ archived: true })
       .eq('id', id)

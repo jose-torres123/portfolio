@@ -15,9 +15,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@repo/ui": ["../../packages/ui/src"],
-      "@repo/shared": ["../../packages/shared/src"],
-      "@repo/supabase": ["../../packages/supabase/src"]
+      "@repo/ui": ["packages/ui/src"],
+      "@repo/shared": ["packages/shared/src"],
+      "@repo/supabase": ["packages/supabase/src"]
     }
   },
   "include": ["src"],
