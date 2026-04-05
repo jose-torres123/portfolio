@@ -49,7 +49,7 @@ export function ProjectsSection(): React.JSX.Element {
         >
           <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
             {t.projects.title}{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
               {t.projects.titleAccent}
             </span>
           </h2>
@@ -64,7 +64,7 @@ export function ProjectsSection(): React.JSX.Element {
           className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
           {projects.map((project) => (
-            <motion.div key={project.id} variants={cardVariants}>
+            <motion.div key={project.id} variants={cardVariants} className="h-full">
               <ProjectCard project={project} />
             </motion.div>
           ))}

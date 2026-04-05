@@ -61,7 +61,7 @@ export function HeroSection(): React.JSX.Element {
 
         <motion.h1
           variants={item}
-          className="mb-4 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
+          className="mb-4 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
         >
           <span className="bg-linear-to-r from-gradient-start via-gradient-mid to-gradient-end bg-clip-text text-transparent">
             José Torres
@@ -70,14 +70,14 @@ export function HeroSection(): React.JSX.Element {
 
         <motion.p
           variants={item}
-          className="mb-3 text-xl font-semibold text-foreground/80 sm:text-2xl md:text-3xl"
+          className="mb-3 text-lg font-semibold text-foreground/80 sm:text-xl md:text-2xl lg:text-3xl"
         >
           {t.hero.role}
         </motion.p>
 
         <motion.p
           variants={item}
-          className="mx-auto mb-10 max-w-lg text-base text-muted-foreground sm:text-lg"
+          className="mx-auto mb-10 max-w-lg px-2 text-sm text-muted-foreground sm:px-0 sm:text-base md:text-lg"
         >
           {t.hero.tagline}
         </motion.p>

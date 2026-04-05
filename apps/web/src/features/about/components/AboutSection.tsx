@@ -32,9 +32,9 @@ export function AboutSection(): React.JSX.Element {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
             {t.about.title}{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
               {t.about.titleAccent}
             </span>
           </h2>
@@ -49,7 +49,7 @@ export function AboutSection(): React.JSX.Element {
             transition={{ duration: 0.6 }}
             className="flex justify-center"
           >
-            <div className="flex size-64 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 ring-2 ring-primary/20 md:size-80">
+            <div className="flex size-64 items-center justify-center rounded-2xl bg-linear-to-br from-primary/20 via-secondary/20 to-accent/20 ring-2 ring-primary/20 md:size-80">
               <span className="text-7xl md:text-8xl">👨‍💻</span>
             </div>
           </motion.div>

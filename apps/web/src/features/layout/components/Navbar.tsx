@@ -69,7 +69,7 @@ export function Navbar(): React.JSX.Element {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 lg:py-4">
         <a
           href="#hero"
-          className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent lg:text-2xl"
+          className="text-xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent lg:text-2xl"
         >
           José Torres
         </a>
@@ -91,7 +91,7 @@ export function Navbar(): React.JSX.Element {
                 {activeSection === link.href && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute inset-x-1 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-primary to-secondary"
+                    className="absolute inset-x-1 -bottom-0.5 h-0.5 rounded-full bg-linear-to-r from-primary to-secondary"
                   />
                 )}
               </a>
@@ -112,7 +112,7 @@ export function Navbar(): React.JSX.Element {
           <button
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-lg p-2.5 text-muted-foreground transition-colors hover:text-foreground"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
             {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}

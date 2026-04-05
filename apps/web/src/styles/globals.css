@@ -60,6 +60,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* compensate fixed navbar (~64px) */
 }
 
 body {

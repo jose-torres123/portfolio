@@ -16,10 +16,10 @@ export function TimelineItem({ experience, index }: TimelineItemProps): React.JS
       className="relative pl-8 pb-10 last:pb-0"
     >
       {/* Vertical line */}
-      <div className="absolute left-[7px] top-3 bottom-0 w-px bg-border" />
+      <div className="absolute left-1.75 top-3 bottom-0 w-px bg-border" />
 
       {/* Dot */}
-      <div className="absolute left-0 top-2 size-3.5 rounded-full bg-gradient-to-br from-primary to-secondary ring-4 ring-background" />
+      <div className="absolute left-0 top-2 size-3.5 rounded-full bg-linear-to-br from-primary to-secondary ring-4 ring-background" />
 
       {/* Content */}
       <div className="rounded-xl border border-border/50 bg-card/80 p-5 backdrop-blur-sm transition-colors hover:border-primary/30">

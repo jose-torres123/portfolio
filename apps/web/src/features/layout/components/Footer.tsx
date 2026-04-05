@@ -13,7 +13,7 @@ export function Footer(): React.JSX.Element {
 
   return (
     <footer className="relative mt-20 border-t border-border/50">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/50 to-transparent" />
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-6">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">

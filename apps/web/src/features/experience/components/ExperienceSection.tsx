@@ -33,7 +33,7 @@ export function ExperienceSection(): React.JSX.Element {
         >
           <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
             {t.experience.title}{" "}
-            <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">
               {t.experience.titleAccent}
             </span>
           </h2>

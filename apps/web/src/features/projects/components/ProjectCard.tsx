@@ -18,7 +18,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps): React.JSX.Element {
   return (
-    <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
+    <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }} className="h-full">
       <Card className="group flex h-full flex-col hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
         {/* Image placeholder */}
         <div className="flex h-44 items-center justify-center rounded-t-xl bg-linear-to-br from-primary/10 via-secondary/10 to-accent/10">
