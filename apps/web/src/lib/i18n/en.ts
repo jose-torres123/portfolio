@@ -119,6 +119,6 @@ export const en: Translations = {
   },
   footer: {
     rights: "All rights reserved.",
-    builtWith: "Built with React + Tailwind",
+    builtWith: "",
   },
 };

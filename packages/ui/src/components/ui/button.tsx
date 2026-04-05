@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         gradient:
-          "bg-linear-to-r from-[hsl(262_83%_58%)] via-[hsl(330_81%_60%)] to-[hsl(25_95%_53%)] text-white shadow-lg hover:shadow-xl hover:opacity-90",
+          "bg-linear-to-r from-gradient-start via-gradient-mid to-gradient-end text-white shadow-lg hover:shadow-xl hover:opacity-90",
         default:
           "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
         outline:
