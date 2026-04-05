@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
+import { Badge } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
 
 const CATEGORY_KEYS = ["frontend", "backend", "tools"] as const;
 
-const CATEGORY_STYLES: { color: string; chipColor: string }[] = [
-  { color: "text-primary", chipColor: "bg-primary/10 text-primary border-primary/20" },
-  { color: "text-secondary", chipColor: "bg-secondary/10 text-secondary border-secondary/20" },
-  { color: "text-accent", chipColor: "bg-accent/10 text-accent border-accent/20" },
-];
+const CATEGORY_STYLES = [
+  { color: "text-primary",   chipClass: "bg-primary/10 text-primary border-primary/20" },
+  { color: "text-secondary", chipClass: "bg-secondary/10 text-secondary border-secondary/20" },
+  { color: "text-accent",    chipClass: "bg-accent/10 text-accent border-accent/20" },
+] as const;
 
-const CATEGORY_SKILLS: string[][] = [
+const CATEGORY_SKILLS: readonly string[][] = [
   ["React.js", "Next.js", "TypeScript", "Svelte", "shadcn/ui", "Redux.js", "Tailwind CSS", "Zod"],
   ["Node.js", "Express.js", "GraphQL", "RESTful APIs", "React Query", "Apollo", "Docker", "PostgreSQL", "MySQL"],
   ["Git", "CI/CD", "SonarQube", "Playwright", "Agile", "React Native", "Ionic", "MCP", "AI-Assisted Dev"],
@@ -40,7 +41,7 @@ export function SkillsSection(): React.JSX.Element {
         >
           <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
             {t.skills.title}{" "}
-            <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-secondary to-accent bg-clip-text text-transparent">
               {t.skills.titleAccent}
             </span>
           </h2>
@@ -66,12 +67,9 @@ export function SkillsSection(): React.JSX.Element {
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className={`rounded-lg border px-4 py-2 text-sm font-medium transition-shadow hover:shadow-md ${style.chipColor}`}
-                    >
+                    <Badge key={skill} variant="chip" className={style.chipClass}>
                       {skill}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
               </motion.div>

@@ -1,9 +1,10 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GitHubIcon, LinkedInIcon } from "@/shared/components/brand-icons.js";
 import { useI18n } from "@/lib/i18n/index.js";
 
 const SOCIAL_LINKS: { label: string; href: string; icon: React.JSX.Element }[] = [
-  { label: "GitHub", href: "https://github.com/jose-torres123", icon: <Github className="size-5" /> },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-torres-ad13", icon: <Linkedin className="size-5" /> },
+  { label: "GitHub", href: "https://github.com/jose-torres123", icon: <GitHubIcon className="size-5" /> },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-torres-ad13", icon: <LinkedInIcon className="size-5" /> },
   { label: "Email", href: "mailto:joseprox16@gmail.com", icon: <Mail className="size-5" /> },
 ];
 

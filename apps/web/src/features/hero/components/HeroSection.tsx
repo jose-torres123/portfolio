@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
+import { Button } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
 
 const container = {
@@ -62,7 +63,7 @@ export function HeroSection(): React.JSX.Element {
           variants={item}
           className="mb-4 text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
         >
-          <span className="bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-gradient-start via-gradient-mid to-gradient-end bg-clip-text text-transparent">
             José Torres
           </span>
         </motion.h1>
@@ -85,18 +86,12 @@ export function HeroSection(): React.JSX.Element {
           variants={item}
           className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end px-8 py-3 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl hover:shadow-primary/25"
-          >
-            {t.hero.viewProjects}
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-full border-2 border-primary/50 px-8 py-3 text-sm font-semibold text-primary transition-colors hover:border-primary hover:bg-primary/5"
-          >
-            {t.hero.contactMe}
-          </a>
+          <Button variant="gradient" asChild>
+            <a href="#projects">{t.hero.viewProjects}</a>
+          </Button>
+          <Button variant="outline" asChild>
+            <a href="#contact">{t.hero.contactMe}</a>
+          </Button>
         </motion.div>
       </motion.div>
 

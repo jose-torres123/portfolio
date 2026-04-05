@@ -1,13 +1,39 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import { GitHubIcon, LinkedInIcon } from "@/shared/components/brand-icons.js";
+import { Card, Button } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
 
-const CONTACT_LINKS: { label: string; value: string; href: string; icon: React.JSX.Element; color: string }[] = [
-  { label: "Email", value: "joseprox16@gmail.com", href: "mailto:joseprox16@gmail.com", icon: <Mail className="size-6" />, color: "hover:border-primary/50 hover:text-primary" },
-  { label: "GitHub", value: "github.com/jose-torres123", href: "https://github.com/jose-torres123", icon: <Github className="size-6" />, color: "hover:border-secondary/50 hover:text-secondary" },
-  { label: "LinkedIn", value: "jose-torres-ad13", href: "https://www.linkedin.com/in/jose-torres-ad13", icon: <Linkedin className="size-6" />, color: "hover:border-accent/50 hover:text-accent" },
-  { label: "Location", value: "Lara, Venezuela", href: "#contact", icon: <MapPin className="size-6" />, color: "hover:border-amber/50 hover:text-amber" },
-];
+const CONTACT_LINKS = [
+  {
+    label: "Email",
+    value: "joseprox16@gmail.com",
+    href: "mailto:joseprox16@gmail.com",
+    icon: <Mail className="size-6" />,
+    hoverClass: "hover:border-primary/50 hover:text-primary",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/jose-torres123",
+    href: "https://github.com/jose-torres123",
+    icon: <GitHubIcon className="size-6" />,
+    hoverClass: "hover:border-secondary/50 hover:text-secondary",
+  },
+  {
+    label: "LinkedIn",
+    value: "jose-torres-ad13",
+    href: "https://www.linkedin.com/in/jose-torres-ad13",
+    icon: <LinkedInIcon className="size-6" />,
+    hoverClass: "hover:border-accent/50 hover:text-accent",
+  },
+  {
+    label: "Location",
+    value: "Lara, Venezuela",
+    href: "#contact",
+    icon: <MapPin className="size-6" />,
+    hoverClass: "hover:border-amber/50 hover:text-amber",
+  },
+] as const;
 
 const containerVariants = {
   hidden: {},
@@ -34,7 +60,7 @@ export function ContactSection(): React.JSX.Element {
         >
           <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
             {t.contact.title}{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               {t.contact.titleAccent}
             </span>
           </h2>
@@ -48,22 +74,27 @@ export function ContactSection(): React.JSX.Element {
           viewport={{ once: true, margin: "-50px" }}
           className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {CONTACT_LINKS.map((link) => (
-            <motion.a
-              key={link.label}
-              variants={cardVariants}
-              href={link.href}
-              target={link.href.startsWith("mailto:") || link.href.startsWith("#") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") || link.href.startsWith("#") ? undefined : "noopener noreferrer"}
-              className={`group flex flex-col items-center gap-3 rounded-xl border border-border/50 bg-card/80 p-6 backdrop-blur-sm transition-all ${link.color}`}
-            >
-              <div className="text-muted-foreground transition-colors">
-                {link.icon}
-              </div>
-              <span className="text-sm font-medium text-foreground">{link.label}</span>
-              <span className="text-xs text-muted-foreground">{link.value}</span>
-            </motion.a>
-          ))}
+          {CONTACT_LINKS.map((link) => {
+            const isExternal = !link.href.startsWith("mailto:") && !link.href.startsWith("#");
+            return (
+              <motion.a
+                key={link.label}
+                variants={cardVariants}
+                href={link.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className={`group ${link.hoverClass}`}
+              >
+                <Card className={`flex flex-col items-center gap-3 p-6 transition-all ${link.hoverClass}`}>
+                  <div className="text-muted-foreground transition-colors group-hover:text-inherit">
+                    {link.icon}
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{link.label}</span>
+                  <span className="text-center text-xs text-muted-foreground">{link.value}</span>
+                </Card>
+              </motion.a>
+            );
+          })}
         </motion.div>
 
         <motion.div
@@ -73,13 +104,12 @@ export function ContactSection(): React.JSX.Element {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <a
-            href="mailto:joseprox16@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end px-8 py-3 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl hover:shadow-primary/25"
-          >
-            <Mail className="size-4" />
-            {t.contact.cta}
-          </a>
+          <Button variant="gradient" asChild>
+            <a href="mailto:joseprox16@gmail.com">
+              <Mail className="size-4" />
+              {t.contact.cta}
+            </a>
+          </Button>
         </motion.div>
       </div>
     </section>
