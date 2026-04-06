@@ -49,8 +49,8 @@ vi.mock("@/lib/i18n/index.js", () => ({
 vi.mock("framer-motion", () => ({
   motion: {
     div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => <div {...props}>{children}</div>,
-    form: ({ children, onSubmit, ...props }: React.HTMLAttributes<HTMLFormElement> & { onSubmit?: React.FormEventHandler }) => (
-      <form onSubmit={onSubmit} {...props}>{children}</form>
+    form: ({ children, ...props }: React.HTMLAttributes<HTMLFormElement>) => (
+      <form {...props}>{children}</form>
     ),
   },
   AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
@@ -127,7 +127,7 @@ describe("ContactForm", () => {
           subject: "Hello there",
           message: "This is a valid test message.",
         },
-        expect.objectContaining({ onSuccess: expect.any(Function) }),
+        expect.objectContaining({ onSuccess: expect.any(Function) as unknown }),
       );
     });
   });

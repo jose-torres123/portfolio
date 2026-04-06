@@ -49,7 +49,7 @@ describe("useSubmitContact", () => {
     const { result } = renderHook(() => useSubmitContact(), { wrapper: createWrapper() });
     result.current.mutate(validData);
 
-    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    await waitFor(() => { expect(result.current.isSuccess).toBe(true); });
     expect(mockService).toHaveBeenCalledWith(validData, expect.anything());
   });
 
@@ -60,7 +60,7 @@ describe("useSubmitContact", () => {
     const { result } = renderHook(() => useSubmitContact(), { wrapper: createWrapper() });
     result.current.mutate(validData);
 
-    await waitFor(() => expect(result.current.isError).toBe(true));
+    await waitFor(() => { expect(result.current.isError).toBe(true); });
     expect(result.current.error?.message).toBe("Network error");
   });
 });
