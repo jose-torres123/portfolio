@@ -38,6 +38,9 @@ coverage/
 # Playwright test results
 .playwright-mcp
 
+# Supabase branches
+supabase/.branches
+
 # Dependency directories
 jspm_packages/
 

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/shared/components/brand-icons.js";
-import { Card, Button } from "@repo/ui";
+import { Card } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
+import { ContactForm } from "./ContactForm.js";
 
 const CONTACT_LINKS = [
   {
@@ -67,12 +68,13 @@ export function ContactSection(): React.JSX.Element {
           <p className="mx-auto max-w-md text-muted-foreground">{t.contact.subtitle}</p>
         </motion.div>
 
+        {/* Contact links */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {CONTACT_LINKS.map((link) => {
             const isExternal = !link.href.startsWith("mailto:") && !link.href.startsWith("#");
@@ -97,19 +99,14 @@ export function ContactSection(): React.JSX.Element {
           })}
         </motion.div>
 
+        {/* Contact form */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 text-center"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Button variant="gradient" asChild>
-            <a href="mailto:joseprox16@gmail.com">
-              <Mail className="size-4" />
-              {t.contact.cta}
-            </a>
-          </Button>
+          <ContactForm />
         </motion.div>
       </div>
     </section>
