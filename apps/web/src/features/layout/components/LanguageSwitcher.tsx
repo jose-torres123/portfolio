@@ -15,7 +15,7 @@ export function LanguageSwitcher(): React.JSX.Element {
         <button
           key={l.value}
           type="button"
-          onClick={() => setLocale(l.value)}
+          onClick={() => { setLocale(l.value); }}
           className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
             locale === l.value
               ? "bg-primary text-primary-foreground"

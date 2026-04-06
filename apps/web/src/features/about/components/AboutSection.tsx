@@ -78,7 +78,7 @@ export function AboutSection(): React.JSX.Element {
               key={label}
               className="group rounded-xl border border-border/50 bg-card/80 p-6 text-center backdrop-blur-sm transition-colors hover:border-primary/30"
             >
-              <div className={`mx-auto mb-3 flex size-10 items-center justify-center rounded-lg ${HIGHLIGHT_COLORS[i]}`}>
+              <div className={`mx-auto mb-3 flex size-10 items-center justify-center rounded-lg ${HIGHLIGHT_COLORS[i] ?? ""}`}>
                 {STAT_ICONS[i]}
               </div>
               <p className="text-2xl font-bold text-foreground">{STAT_VALUES[i]}</p>

@@ -23,7 +23,7 @@ export function ContactForm(): React.JSX.Element {
 
   function onSubmit(data: ContactMessageInput): void {
     mutation.mutate(data, {
-      onSuccess: () => reset(),
+      onSuccess: () => { reset(); },
     });
   }
 
@@ -45,7 +45,7 @@ export function ContactForm(): React.JSX.Element {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => mutation.reset()}
+                onClick={() => { mutation.reset(); }}
                 className="mt-2"
               >
                 Send another
@@ -57,7 +57,7 @@ export function ContactForm(): React.JSX.Element {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={(e) => { void handleSubmit(onSubmit)(e); }}
               className="flex flex-col gap-5"
             >
               <div className="grid gap-5 sm:grid-cols-2">

@@ -23,9 +23,9 @@ const linkVariants = {
 
 export function Navbar(): React.JSX.Element {
   const { t } = useI18n();
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [activeSection, setActiveSection] = useState<string>("#home");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
 
   const navLinks = NAV_KEYS.map((key) => ({
     label: t.nav[key],
@@ -50,7 +50,7 @@ export function Navbar(): React.JSX.Element {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
   const handleLinkClick = useCallback((href: string): void => {
@@ -80,7 +80,7 @@ export function Navbar(): React.JSX.Element {
             <li key={link.href}>
               <a
                 href={link.href}
-                onClick={() => setActiveSection(link.href)}
+                onClick={() => { setActiveSection(link.href); }}
                 className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   activeSection === link.href
                     ? "text-primary"
@@ -111,7 +111,7 @@ export function Navbar(): React.JSX.Element {
           <LanguageSwitcher />
           <button
             type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => { setMenuOpen((prev) => !prev); }}
             className="rounded-lg p-2.5 text-muted-foreground transition-colors hover:text-foreground"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
@@ -140,7 +140,7 @@ export function Navbar(): React.JSX.Element {
               >
                 <a
                   href={link.href}
-                  onClick={() => handleLinkClick(link.href)}
+                  onClick={() => { handleLinkClick(link.href); }}
                   className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                     activeSection === link.href
                       ? "text-primary bg-primary/10"

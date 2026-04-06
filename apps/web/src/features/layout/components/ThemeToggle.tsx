@@ -17,7 +17,7 @@ export function ThemeToggle(): React.JSX.Element {
         <button
           key={t.value}
           type="button"
-          onClick={() => setTheme(t.value)}
+          onClick={() => { setTheme(t.value); }}
           className={`rounded-md p-1.5 transition-colors ${
             theme === t.value
               ? "bg-primary text-primary-foreground"

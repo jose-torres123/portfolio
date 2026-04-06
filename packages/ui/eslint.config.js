@@ -1,8 +1,6 @@
 import reactConfig from "@repo/config/eslint/react";
-import tseslint from "typescript-eslint";
 
-export default tseslint.config(
-  { ignores: ["dist/**", "coverage/**", "src/lib/supabase/types.ts"] },
+export default [
   ...reactConfig,
   {
     languageOptions: {
@@ -11,5 +9,6 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-  }
-);
+    ignores: ["dist/**"],
+  },
+];

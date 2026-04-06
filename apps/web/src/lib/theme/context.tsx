@@ -56,7 +56,7 @@ export function ThemeProvider({ children }: ThemeProviderProps): React.JSX.Eleme
       if (theme === "system") applyTheme("system");
     };
     mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    return () => { mq.removeEventListener("change", handler); };
   }, [theme]);
 
   const value = useMemo<ThemeContextValue>(
