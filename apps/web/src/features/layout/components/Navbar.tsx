@@ -53,9 +53,15 @@ export function Navbar(): React.JSX.Element {
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
-  const handleLinkClick = useCallback((href: string): void => {
+  const handleLinkClick = useCallback((href: string, e: React.MouseEvent): void => {
+    e.preventDefault();
     setMenuOpen(false);
     setActiveSection(href);
+    const id = href.replace("#", "");
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 320);
   }, []);
 
   return (
@@ -140,7 +146,7 @@ export function Navbar(): React.JSX.Element {
               >
                 <a
                   href={link.href}
-                  onClick={() => { handleLinkClick(link.href); }}
+                  onClick={(e) => { handleLinkClick(link.href, e); }}
                   className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                     activeSection === link.href
                       ? "text-primary bg-primary/10"
