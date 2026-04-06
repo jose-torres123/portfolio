@@ -12,7 +12,9 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -31,6 +33,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@repo/config": "workspace:*",
     "@tailwindcss/vite": "^4.0.6",
     "@testing-library/jest-dom": "^6.6.3",
@@ -43,6 +46,7 @@
     "@vitest/ui": "^3.0.0",
     "eslint": "^9.17.0",
     "jsdom": "^25.0.1",
+    "playwright": "^1.59.1",
     "tailwindcss": "^4.0.6",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.58.0",
