@@ -15,6 +15,7 @@ export const es: Translations = {
     tagline: "Me especializo en desarrollar aplicaciones web y móviles escalables con un fuerte enfoque en el ecosistema JavaScript",
     viewProjects: "Ver Proyectos",
     contactMe: "Contáctame",
+    downloadCV: "Descargar CV",
   },
   about: {
     title: "Sobre",

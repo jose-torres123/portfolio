@@ -15,6 +15,7 @@ export const en: Translations = {
     tagline: "I specialize in developing scalable web and mobile applications with a strong focus on the JavaScript ecosystem",
     viewProjects: "View Projects",
     contactMe: "Contact Me",
+    downloadCV: "Download CV",
   },
   about: {
     title: "About",

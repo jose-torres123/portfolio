@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Download, Sparkles } from "lucide-react";
 import { Button } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
 
@@ -21,7 +21,7 @@ const floatingCircles = [
 ];
 
 export function HeroSection(): React.JSX.Element {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
   return (
     <section
@@ -91,6 +91,16 @@ export function HeroSection(): React.JSX.Element {
           </Button>
           <Button variant="outline" asChild>
             <a href="#contact">{t.hero.contactMe}</a>
+          </Button>
+          <Button variant="ghost" asChild>
+            <a
+              href={`/cv-${locale}.pdf`}
+              download={`Jose-Torres-CV-${locale.toUpperCase()}.pdf`}
+              className="flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              {t.hero.downloadCV}
+            </a>
           </Button>
         </motion.div>
       </motion.div>

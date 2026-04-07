@@ -15,6 +15,7 @@ export interface Translations {
     tagline: string;
     viewProjects: string;
     contactMe: string;
+    downloadCV: string;
   };
   about: {
     title: string;

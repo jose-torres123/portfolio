@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter } from "react-router-dom";
@@ -34,6 +35,7 @@ createRoot(rootElement).render(
             <App />
           </BrowserRouter>
           <ReactQueryDevtools initialIsOpen={false} />
+          <Analytics />
         </QueryClientProvider>
       </I18nProvider>
     </ThemeProvider>

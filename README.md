@@ -232,7 +232,3 @@ While this template targets React + Supabase, the architecture (agents, skills, 
 ## License
 
 MIT
-
-## Author
-
-**cestay@atomix.cl** — Built with Claude Code for Claude Code.
