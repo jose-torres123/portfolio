@@ -46,7 +46,7 @@ vi.mock("@/lib/i18n/index.js", () => ({
   }),
 }));
 
-vi.mock("framer-motion", () => ({
+vi.mock("motion/react", () => ({
   motion: {
     div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => <div {...props}>{children}</div>,
     form: ({ children, ...props }: React.HTMLAttributes<HTMLFormElement>) => (

@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n/index.js";
 import { TimelineItem } from "./TimelineItem.js";
+import { Section, EditorialHeading } from "@/shared/templates/index.js";
 
 const EXPERIENCE_TECH: string[][] = [
   ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind", "Playwright", "SonarQube"],
@@ -22,30 +22,23 @@ export function ExperienceSection(): React.JSX.Element {
   }));
 
   return (
-    <section id="experience" className="px-4 py-24 md:px-6">
-      <div className="mx-auto max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
-            {t.experience.title}{" "}
-            <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">
-              {t.experience.titleAccent}
-            </span>
-          </h2>
-          <p className="text-muted-foreground">{t.experience.subtitle}</p>
-        </motion.div>
-
-        <div>
-          {experiences.map((exp, i) => (
-            <TimelineItem key={exp.id} experience={exp} index={i} />
-          ))}
+    <Section id="experience" bordered>
+      <div className="mb-16 grid gap-8 md:mb-24 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-7">
+          <EditorialHeading eyebrow={`04 — ${t.experience.title}`} as="h2">
+            {t.experience.titleAccent}
+          </EditorialHeading>
         </div>
+        <p className="text-base text-muted-foreground md:col-span-5 md:pt-4 md:text-lg">
+          {t.experience.subtitle}
+        </p>
       </div>
-    </section>
+
+      <ul className="flex flex-col">
+        {experiences.map((exp, i) => (
+          <TimelineItem key={exp.id} experience={exp} index={i} />
+        ))}
+      </ul>
+    </Section>
   );
 }

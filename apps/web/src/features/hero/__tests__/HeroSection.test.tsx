@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { HeroSection } from "../components/HeroSection.js";
 
@@ -12,38 +13,89 @@ vi.mock("@/lib/i18n/index.js", () => ({
         tagline: "I specialize in developing scalable web and mobile applications",
         viewProjects: "View Projects",
         contactMe: "Contact Me",
+        downloadCV: "Download CV",
       },
     },
   }),
 }));
 
-vi.mock("framer-motion", () => ({
-  motion: {
-    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => <div {...props}>{children}</div>,
-    h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => <h1 {...props}>{children}</h1>,
-    p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => <p {...props}>{children}</p>,
-  },
-}));
+vi.mock("motion/react", () => {
+  const isMotionValue = (v: unknown): boolean =>
+    typeof v === "object" && v !== null && "get" in v && typeof (v as { get: unknown }).get === "function";
+  const sanitizeStyle = (style: unknown): Record<string, unknown> | undefined => {
+    if (typeof style !== "object" || style === null) return style as undefined;
+    return Object.fromEntries(
+      Object.entries(style as Record<string, unknown>).filter(([, v]) => !isMotionValue(v)),
+    );
+  };
+  const passthrough = (Tag: string) => {
+    const Comp = ({
+      children,
+      ...props
+    }: { children?: React.ReactNode } & Record<string, unknown>) => {
+      const cleanProps = Object.fromEntries(
+        Object.entries(props)
+          .filter(
+            ([k]) =>
+              ![
+                "variants",
+                "initial",
+                "animate",
+                "whileInView",
+                "whileHover",
+                "viewport",
+                "transition",
+                "exit",
+                "layoutId",
+                "custom",
+              ].includes(k),
+          )
+          .map(([k, v]) => (k === "style" ? [k, sanitizeStyle(v)] : [k, v])),
+      );
+      return React.createElement(Tag, cleanProps, children);
+    };
+    Comp.displayName = `motion.${Tag}`;
+    return Comp;
+  };
+  const motionValue = (initial: number = 0) => {
+    let value = initial;
+    return {
+      get: () => value,
+      set: (v: number) => {
+        value = v;
+      },
+      on: () => () => {},
+    };
+  };
+  return {
+    motion: new Proxy({} as Record<string, ReturnType<typeof passthrough>>, {
+      get: (_t, prop: string) => passthrough(prop),
+    }),
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+    useScroll: () => ({ scrollYProgress: motionValue(0), scrollY: motionValue(0) }),
+    useTransform: () => motionValue(0),
+    useSpring: () => motionValue(0),
+    useMotionValue: (v: number = 0) => motionValue(v),
+    useMotionValueEvent: () => {},
+    useInView: () => true,
+    useReducedMotion: () => false,
+  };
+});
 
 vi.mock("@repo/ui", () => ({
-  Button: ({ children, asChild, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }) => {
-    if (asChild) {
-      // When asChild, render children directly (the <a> tag)
-      return <>{children}</>;
-    }
-    return <button {...props}>{children}</button>;
-  },
+  cn: (...args: unknown[]) => args.filter(Boolean).join(" "),
 }));
 
 describe("HeroSection", () => {
   it("should render the heading with name", () => {
     render(<HeroSection />);
-    expect(screen.getByText("José Torres")).toBeInTheDocument();
+    expect(screen.getByText("José")).toBeInTheDocument();
+    expect(screen.getByText("Torres")).toBeInTheDocument();
   });
 
   it("should render the greeting", () => {
     render(<HeroSection />);
-    expect(screen.getByText("Welcome to my portfolio")).toBeInTheDocument();
+    expect(screen.getAllByText("Welcome to my portfolio").length).toBeGreaterThan(0);
   });
 
   it("should render the role", () => {
@@ -56,15 +108,16 @@ describe("HeroSection", () => {
     expect(screen.getByText(/I specialize in developing/)).toBeInTheDocument();
   });
 
-  it("should render CTA buttons as links", () => {
+  it("should render CTA links", () => {
     render(<HeroSection />);
     const viewProjects = screen.getByText("View Projects");
-    expect(viewProjects).toBeInTheDocument();
     expect(viewProjects.closest("a")).toHaveAttribute("href", "#projects");
 
     const contactMe = screen.getByText("Contact Me");
-    expect(contactMe).toBeInTheDocument();
     expect(contactMe.closest("a")).toHaveAttribute("href", "#contact");
+
+    const cv = screen.getByText("Download CV");
+    expect(cv.closest("a")).toHaveAttribute("href", "/cv-en.pdf");
   });
 
   it("should have the correct section id", () => {

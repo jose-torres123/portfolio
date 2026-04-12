@@ -1,14 +1,8 @@
-import { motion } from "framer-motion";
-import { Badge } from "@repo/ui";
+import { motion } from "motion/react";
 import { useI18n } from "@/lib/i18n/index.js";
+import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/index.js";
 
 const CATEGORY_KEYS = ["frontend", "backend", "tools"] as const;
-
-const CATEGORY_STYLES = [
-  { color: "text-primary",   chipClass: "bg-primary/10 text-primary border-primary/20" },
-  { color: "text-secondary", chipClass: "bg-secondary/10 text-secondary border-secondary/20" },
-  { color: "text-accent",    chipClass: "bg-accent/10 text-accent border-accent/20" },
-] as const;
 
 const CATEGORY_SKILLS: readonly string[][] = [
   ["React.js", "Next.js", "TypeScript", "Svelte", "shadcn/ui", "Redux.js", "Tailwind CSS", "Zod"],
@@ -16,67 +10,59 @@ const CATEGORY_SKILLS: readonly string[][] = [
   ["Git", "CI/CD", "SonarQube", "Playwright", "Agile", "React Native", "Ionic", "MCP", "AI-Assisted Dev"],
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const categoryVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export function SkillsSection(): React.JSX.Element {
   const { t } = useI18n();
 
   return (
-    <section id="skills" className="px-4 py-24 md:px-6">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
-            {t.skills.title}{" "}
-            <span className="bg-linear-to-r from-secondary to-accent bg-clip-text text-transparent">
-              {t.skills.titleAccent}
-            </span>
-          </h2>
-          <p className="text-muted-foreground">{t.skills.subtitle}</p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="space-y-10"
-        >
-          {CATEGORY_KEYS.map((key, i) => {
-            const style = CATEGORY_STYLES[i];
-            const skills = CATEGORY_SKILLS[i];
-            if (!style || !skills) return null;
-
-            return (
-              <motion.div key={key} variants={categoryVariants}>
-                <h3 className={`mb-4 text-lg font-semibold ${style.color}`}>
-                  {t.skills.categories[key]}
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {skills.map((skill) => (
-                    <Badge key={skill} variant="chip" className={style.chipClass}>
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+    <Section id="skills" bordered>
+      <div className="mb-16 grid gap-8 md:mb-24 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-7">
+          <EditorialHeading eyebrow={`03 — ${t.skills.title}`} as="h2">
+            {t.skills.titleAccent}
+          </EditorialHeading>
+        </div>
+        <p className="text-base text-muted-foreground md:col-span-5 md:pt-4 md:text-lg">
+          {t.skills.subtitle}
+        </p>
       </div>
-    </section>
+
+      <motion.ul
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10%" }}
+        className="flex flex-col"
+      >
+        {CATEGORY_KEYS.map((key, i) => {
+          const skills = CATEGORY_SKILLS[i];
+          if (!skills) return null;
+
+          return (
+            <motion.li
+              key={key}
+              variants={fadeUp}
+              className="group grid grid-cols-12 gap-6 border-t border-border py-8 transition-colors last:border-b hover:bg-muted/40 md:gap-10 md:py-10"
+            >
+              <span className="col-span-2 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground md:col-span-1">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="col-span-10 font-display text-3xl text-foreground md:col-span-4 md:text-4xl lg:text-5xl">
+                {t.skills.categories[key]}
+              </h3>
+              <div className="col-span-12 flex flex-wrap gap-x-4 gap-y-2 md:col-span-7">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="font-mono text-xs uppercase tracking-widest text-muted-foreground"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.li>
+          );
+        })}
+      </motion.ul>
+    </Section>
   );
 }

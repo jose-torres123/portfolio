@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle, AlertCircle } from "lucide-react";
 import { Button, Input, Textarea, Label, Card, CardContent } from "@repo/ui";
 import { contactMessageSchema, type ContactMessageInput } from "../types/contact.schemas.js";

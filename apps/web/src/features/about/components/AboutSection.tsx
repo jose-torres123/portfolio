@@ -1,92 +1,78 @@
-import { motion } from "framer-motion";
-import { Code, Coffee, Rocket, Globe } from "lucide-react";
+import { motion } from "motion/react";
 import { useI18n } from "@/lib/i18n/index.js";
-
-const STAT_ICONS: React.JSX.Element[] = [
-  <Code className="size-5" key="code" />,
-  <Rocket className="size-5" key="rocket" />,
-  <Coffee className="size-5" key="coffee" />,
-  <Globe className="size-5" key="globe" />,
-];
+import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/index.js";
+import { PhotoGallery } from "./PhotoGallery.js";
 
 const STAT_VALUES = ["7+", "4", "∞", "3+"];
 
-const HIGHLIGHT_COLORS = [
-  "text-primary bg-primary/10",
-  "text-secondary bg-secondary/10",
-  "text-accent bg-accent/10",
-  "text-amber bg-amber/10",
-];
-
 export function AboutSection(): React.JSX.Element {
   const { t } = useI18n();
-  const statLabels = [t.about.stats.experience, t.about.stats.projects, t.about.stats.coffee, t.about.stats.countries];
+  const statLabels = [
+    t.about.stats.experience,
+    t.about.stats.projects,
+    t.about.stats.coffee,
+    t.about.stats.countries,
+  ];
 
   return (
-    <section id="about" className="px-4 py-24 md:px-6">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-3 text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
-            {t.about.title}{" "}
-            <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-              {t.about.titleAccent}
-            </span>
-          </h2>
-          <p className="text-muted-foreground">{t.about.subtitle}</p>
-        </motion.div>
-
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center"
-          >
-            <div className="flex size-64 items-center justify-center rounded-2xl bg-linear-to-br from-primary/20 via-secondary/20 to-accent/20 ring-2 ring-primary/20 md:size-80">
-              <span className="text-7xl md:text-8xl">👨‍💻</span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-4"
-          >
-            <p className="text-muted-foreground leading-relaxed">{t.about.bio1}</p>
-            <p className="text-muted-foreground leading-relaxed">{t.about.bio2}</p>
-          </motion.div>
+    <Section id="about" bordered>
+      <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+        {/* Eyebrow + heading */}
+        <div className="md:col-span-5">
+          <EditorialHeading eyebrow={`01 — ${t.about.title}`} as="h2">
+            <span>{t.about.titleAccent}</span>
+          </EditorialHeading>
         </div>
 
+        {/* Body */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15%" }}
+          className="flex flex-col gap-6 md:col-span-7 md:pt-4"
         >
-          {statLabels.map((label, i) => (
-            <div
-              key={label}
-              className="group rounded-xl border border-border/50 bg-card/80 p-6 text-center backdrop-blur-sm transition-colors hover:border-primary/30"
-            >
-              <div className={`mx-auto mb-3 flex size-10 items-center justify-center rounded-lg ${HIGHLIGHT_COLORS[i] ?? ""}`}>
-                {STAT_ICONS[i]}
-              </div>
-              <p className="text-2xl font-bold text-foreground">{STAT_VALUES[i]}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{label}</p>
-            </div>
-          ))}
+          <motion.p
+            variants={fadeUp}
+            className="text-xl leading-relaxed text-foreground md:text-2xl"
+          >
+            {t.about.subtitle}
+          </motion.p>
+          <motion.p variants={fadeUp} className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            {t.about.bio1}
+          </motion.p>
+          <motion.p variants={fadeUp} className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            {t.about.bio2}
+          </motion.p>
         </motion.div>
       </div>
-    </section>
+
+      {/* Photo gallery */}
+      <PhotoGallery />
+
+      {/* Stats — horizontal editorial row */}
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10%" }}
+        className="mt-20 grid grid-cols-2 gap-px overflow-hidden border-t border-border bg-border md:mt-28 md:grid-cols-4"
+      >
+        {statLabels.map((label, i) => (
+          <motion.div
+            key={i}
+            variants={fadeUp}
+            className="flex flex-col gap-2 bg-background p-6 md:p-8"
+          >
+            <span className="font-display text-5xl text-foreground md:text-6xl">
+              {STAT_VALUES[i]}
+            </span>
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              {label}
+            </span>
+          </motion.div>
+        ))}
+      </motion.div>
+    </Section>
   );
 }

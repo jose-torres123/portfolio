@@ -1,114 +1,121 @@
-import { motion } from "framer-motion";
-import { Mail, MapPin } from "lucide-react";
+import { motion } from "motion/react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/shared/components/brand-icons.js";
-import { Card } from "@repo/ui";
 import { useI18n } from "@/lib/i18n/index.js";
 import { ContactForm } from "./ContactForm.js";
+import { Section, RevealText, HoverLink, fadeUp, stagger } from "@/shared/templates/index.js";
 
-const CONTACT_LINKS = [
+const SOCIAL_LINKS = [
   {
     label: "Email",
     value: "joseprox16@gmail.com",
     href: "mailto:joseprox16@gmail.com",
-    icon: <Mail className="size-6" />,
-    hoverClass: "hover:border-primary/50 hover:text-primary",
+    Icon: Mail,
   },
   {
     label: "GitHub",
     value: "github.com/jose-torres123",
     href: "https://github.com/jose-torres123",
-    icon: <GitHubIcon className="size-6" />,
-    hoverClass: "hover:border-secondary/50 hover:text-secondary",
+    Icon: GitHubIcon,
   },
   {
     label: "LinkedIn",
     value: "jose-torres-ad13",
     href: "https://www.linkedin.com/in/jose-torres-ad13",
-    icon: <LinkedInIcon className="size-6" />,
-    hoverClass: "hover:border-accent/50 hover:text-accent",
+    Icon: LinkedInIcon,
   },
   {
     label: "Location",
     value: "Lara, Venezuela",
     href: "#contact",
-    icon: <MapPin className="size-6" />,
-    hoverClass: "hover:border-amber/50 hover:text-amber",
+    Icon: MapPin,
   },
 ] as const;
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
 
 export function ContactSection(): React.JSX.Element {
   const { t } = useI18n();
 
   return (
-    <section id="contact" className="px-4 py-24 md:px-6">
-      <div className="mx-auto max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
-            {t.contact.title}{" "}
-            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              {t.contact.titleAccent}
-            </span>
-          </h2>
-          <p className="mx-auto max-w-md text-muted-foreground">{t.contact.subtitle}</p>
-        </motion.div>
-
-        {/* Contact links */}
-        <motion.div
-          variants={containerVariants}
+    <Section id="contact" bordered>
+      {/* Big editorial CTA */}
+      <div className="mb-20 flex flex-col gap-10 md:mb-28">
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          05 — {t.contact.title}
+        </span>
+        <h2 className="font-display text-[clamp(3rem,11vw,9rem)] leading-[0.9] tracking-[-0.04em] text-foreground">
+          <RevealText as="span">{t.contact.titleAccent}</RevealText>
+        </h2>
+        <motion.p
+          variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          viewport={{ once: true, margin: "-10%" }}
+          className="max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
-          {CONTACT_LINKS.map((link) => {
+          {t.contact.subtitle}
+        </motion.p>
+      </div>
+
+      <div className="grid gap-16 md:grid-cols-12 md:gap-20">
+        {/* Left: socials list */}
+        <motion.ul
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+          className="flex flex-col md:col-span-5"
+        >
+          {SOCIAL_LINKS.map((link) => {
             const isExternal = !link.href.startsWith("mailto:") && !link.href.startsWith("#");
             return (
-              <motion.a
+              <motion.li
                 key={link.label}
-                variants={cardVariants}
-                href={link.href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noopener noreferrer" : undefined}
-                className={`group ${link.hoverClass}`}
+                variants={fadeUp}
+                className="border-t border-border last:border-b"
               >
-                <Card className={`flex flex-col items-center gap-3 p-6 transition-all ${link.hoverClass}`}>
-                  <div className="text-muted-foreground transition-colors group-hover:text-inherit">
-                    {link.icon}
-                  </div>
-                  <span className="text-sm font-medium text-foreground">{link.label}</span>
-                  <span className="text-center text-xs text-muted-foreground">{link.value}</span>
-                </Card>
-              </motion.a>
+                <a
+                  href={link.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  className="group flex items-center justify-between gap-4 py-5"
+                >
+                  <span className="flex items-center gap-4">
+                    <link.Icon className="size-5 text-muted-foreground" />
+                    <span className="flex flex-col">
+                      <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                        {link.label}
+                      </span>
+                      <span className="font-display text-xl text-foreground md:text-2xl">
+                        {link.value}
+                      </span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="size-5 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                </a>
+              </motion.li>
             );
           })}
-        </motion.div>
+        </motion.ul>
 
-        {/* Contact form */}
+        {/* Right: form */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+          className="md:col-span-7"
         >
           <ContactForm />
         </motion.div>
       </div>
-    </section>
+
+      {/* Bonus: editorial inline CTA */}
+      <div className="mt-24 border-t border-border pt-10">
+        <HoverLink href="mailto:joseprox16@gmail.com" className="font-display text-2xl md:text-3xl">
+          joseprox16@gmail.com
+          <ArrowUpRight className="size-6" />
+        </HoverLink>
+      </div>
+    </Section>
   );
 }

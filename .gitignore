@@ -111,3 +111,6 @@ supabase/.temp/
 
 # Local development
 .local
+
+# MCP config (contains API keys — never commit)
+.mcp.json

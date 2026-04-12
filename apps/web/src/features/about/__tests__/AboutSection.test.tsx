@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { AboutSection } from "../components/AboutSection.js";
 
@@ -23,16 +24,75 @@ vi.mock("@/lib/i18n/index.js", () => ({
   }),
 }));
 
-vi.mock("framer-motion", () => ({
-  motion: {
-    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => <div {...props}>{children}</div>,
-  },
+vi.mock("motion/react", () => {
+  const isMotionValue = (v: unknown): boolean =>
+    typeof v === "object" && v !== null && "get" in v && typeof (v as { get: unknown }).get === "function";
+  const sanitizeStyle = (style: unknown): Record<string, unknown> | undefined => {
+    if (typeof style !== "object" || style === null) return style as undefined;
+    return Object.fromEntries(
+      Object.entries(style as Record<string, unknown>).filter(([, v]) => !isMotionValue(v)),
+    );
+  };
+  const passthrough = (Tag: string) => {
+    const Comp = ({
+      children,
+      ...props
+    }: { children?: React.ReactNode } & Record<string, unknown>) => {
+      const cleanProps = Object.fromEntries(
+        Object.entries(props)
+          .filter(
+            ([k]) =>
+              ![
+                "variants",
+                "initial",
+                "animate",
+                "whileInView",
+                "whileHover",
+                "viewport",
+                "transition",
+                "exit",
+                "layoutId",
+                "custom",
+              ].includes(k),
+          )
+          .map(([k, v]) => (k === "style" ? [k, sanitizeStyle(v)] : [k, v])),
+      );
+      return React.createElement(Tag, cleanProps, children);
+    };
+    Comp.displayName = `motion.${Tag}`;
+    return Comp;
+  };
+  const motionValue = (initial: number = 0) => {
+    let value = initial;
+    return {
+      get: () => value,
+      set: (v: number) => { value = v; },
+      on: () => () => {},
+    };
+  };
+  return {
+    motion: new Proxy({} as Record<string, ReturnType<typeof passthrough>>, {
+      get: (_t, prop: string) => passthrough(prop),
+    }),
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+    useScroll: () => ({ scrollYProgress: motionValue(0), scrollY: motionValue(0) }),
+    useTransform: () => motionValue(0),
+    useSpring: () => motionValue(0),
+    useMotionValue: (v: number = 0) => motionValue(v),
+    useMotionValueEvent: () => {},
+    useInView: () => true,
+    useReducedMotion: () => false,
+  };
+});
+
+vi.mock("@repo/ui", () => ({
+  cn: (...args: unknown[]) => args.filter(Boolean).join(" "),
 }));
 
 describe("AboutSection", () => {
   it("should render the section title", () => {
     render(<AboutSection />);
-    expect(screen.getByText("About")).toBeInTheDocument();
+    expect(screen.getByText(/About/)).toBeInTheDocument();
     expect(screen.getByText("Me")).toBeInTheDocument();
   });
 

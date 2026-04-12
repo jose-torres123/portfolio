@@ -1,118 +1,116 @@
-import { motion } from "framer-motion";
-import { ArrowDown, Download, Sparkles } from "lucide-react";
-import { Button } from "@repo/ui";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { ArrowDown, Download, ArrowUpRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n/index.js";
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-const floatingCircles = [
-  { size: "w-72 h-72", position: "top-1/4 -left-20", color: "bg-primary/20", delay: 0 },
-  { size: "w-96 h-96", position: "-top-10 right-0", color: "bg-secondary/15", delay: 1.5 },
-  { size: "w-64 h-64", position: "bottom-1/4 left-1/3", color: "bg-accent/15", delay: 3 },
-  { size: "w-48 h-48", position: "bottom-10 right-1/4", color: "bg-gradient-mid/20", delay: 0.8 },
-];
+import { Section, RevealText, HoverLink, fadeUp, stagger } from "@/shared/templates/index.js";
 
 export function HeroSection(): React.JSX.Element {
   const { t, locale } = useI18n();
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Parallax: name moves up slower than page, tagline moves slower still
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const taglineY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section
+    <Section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden py-0!"
     >
-      {/* Floating background shapes */}
-      {floatingCircles.map((circle, index) => (
-        <motion.div
-          key={index}
-          className={`absolute ${circle.size} ${circle.position} ${circle.color} rounded-full blur-3xl`}
-          animate={{ y: [0, -30, 0], scale: [1, 1.08, 1] }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: circle.delay,
-            ease: "easeInOut",
-          }}
-          aria-hidden="true"
-        />
-      ))}
-
-      {/* Content */}
       <motion.div
-        className="relative z-10 mx-auto max-w-3xl text-center"
-        variants={container}
+        ref={ref}
+        variants={stagger}
         initial="hidden"
         animate="visible"
+        style={{ opacity }}
+        className="flex w-full flex-col gap-10 pt-24 md:gap-14"
       >
-        <motion.div variants={item} className="mb-4 flex items-center justify-center gap-2">
-          <Sparkles className="h-5 w-5 text-accent" />
-          <span className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
+        {/* Eyebrow */}
+        <motion.div variants={fadeUp} className="flex items-center gap-3">
+          <motion.span
+            className="size-2 rounded-full bg-accent"
+            aria-hidden="true"
+            animate={{ scale: [1, 1.6, 1], opacity: [1, 0.6, 1] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             {t.hero.greeting}
           </span>
         </motion.div>
 
+        {/* Oversized name with parallax */}
         <motion.h1
-          variants={item}
-          className="mb-4 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+          style={{ y: nameY }}
+          className="font-display text-[clamp(3rem,14vw,11rem)] leading-[0.85] tracking-[-0.04em] text-foreground"
         >
-          <span className="bg-linear-to-r from-gradient-start via-gradient-mid to-gradient-end bg-clip-text text-transparent">
-            José Torres
+          <RevealText as="span" delay={0.1}>
+            José
+          </RevealText>
+          <br />
+          <span className="inline-block pr-[0.15em]">
+            <RevealText as="span" delay={0.25}>
+              Torres
+            </RevealText>
           </span>
         </motion.h1>
 
-        <motion.p
-          variants={item}
-          className="mb-3 text-lg font-semibold text-foreground/80 sm:text-xl md:text-2xl lg:text-3xl"
-        >
-          {t.hero.role}
-        </motion.p>
-
-        <motion.p
-          variants={item}
-          className="mx-auto mb-10 max-w-lg px-2 text-sm text-muted-foreground sm:px-0 sm:text-base md:text-lg"
-        >
-          {t.hero.tagline}
-        </motion.p>
-
+        {/* Tagline with slower parallax */}
         <motion.div
-          variants={item}
-          className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          style={{ y: taglineY }}
+          variants={fadeUp}
+          className="grid gap-8 md:grid-cols-12 md:gap-12"
         >
-          <Button variant="gradient" asChild>
-            <a href="#projects">{t.hero.viewProjects}</a>
-          </Button>
-          <Button variant="outline" asChild>
-            <a href="#contact">{t.hero.contactMe}</a>
-          </Button>
-          <Button variant="ghost" asChild>
-            <a
-              href={`/cv-${locale}.pdf`}
-              download={`Jose-Torres-CV-${locale.toUpperCase()}.pdf`}
-              className="flex items-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              {t.hero.downloadCV}
-            </a>
-          </Button>
+          <div className="md:col-span-7 md:col-start-6">
+            <p className="font-display text-2xl leading-[1.15] tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+              {t.hero.role}
+            </p>
+            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+              {t.hero.tagline}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <HoverLink href="#projects" className="font-display text-lg md:text-xl">
+                {t.hero.viewProjects}
+                <ArrowUpRight className="size-5" aria-hidden="true" />
+              </HoverLink>
+              <HoverLink href="#contact" className="font-display text-lg md:text-xl">
+                {t.hero.contactMe}
+                <ArrowUpRight className="size-5" aria-hidden="true" />
+              </HoverLink>
+              <HoverLink
+                href={`/cv-${locale}.pdf`}
+                className="font-display text-lg md:text-xl"
+                {...{ download: `Jose-Torres-CV-${locale.toUpperCase()}.pdf` }}
+              >
+                {t.hero.downloadCV}
+                <Download className="size-5" aria-hidden="true" />
+              </HoverLink>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — anchored to section bottom */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-8 left-6 flex items-center gap-3 text-muted-foreground md:left-10 lg:left-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
       >
-        <ArrowDown className="h-5 w-5 text-muted-foreground/50" />
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="inline-flex"
+        >
+          <ArrowDown className="size-4" aria-hidden="true" />
+        </motion.span>
+        <span className="font-mono text-xs uppercase tracking-[0.2em]">scroll</span>
       </motion.div>
-    </section>
+    </Section>
   );
 }

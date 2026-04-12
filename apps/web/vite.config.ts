@@ -18,7 +18,7 @@ export default defineConfig({
           "react-vendor": ["react", "react-dom"],
           "query-vendor": ["@tanstack/react-query"],
           "router-vendor": ["react-router-dom"],
-          "motion-vendor": ["framer-motion"],
+          "motion-vendor": ["motion"],
           "supabase-vendor": ["@supabase/supabase-js"],
         },
       },

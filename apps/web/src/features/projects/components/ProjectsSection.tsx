@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useI18n } from "@/lib/i18n/index.js";
 import { ProjectCard } from "./ProjectCard.js";
+import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/index.js";
 
 const PROJECT_META: { tags: string[]; github?: string | undefined; live?: string | undefined; featured: boolean }[] = [
   { tags: ["React.js", "TypeScript", "Node.js", "PostgreSQL"], featured: true },
@@ -10,16 +11,6 @@ const PROJECT_META: { tags: string[]; github?: string | undefined; live?: string
   { tags: ["React", "Tailwind CSS", "Framer Motion", "i18n"], github: "https://github.com/jose-torres123", live: "#", featured: true },
   { tags: ["Ionic", "Laravel", "CodeIgniter", "REST APIs"], featured: false },
 ];
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 export function ProjectsSection(): React.JSX.Element {
   const { t } = useI18n();
@@ -38,38 +29,35 @@ export function ProjectsSection(): React.JSX.Element {
   });
 
   return (
-    <section id="projects" className="px-4 py-24 md:px-6">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl lg:text-5xl">
-            {t.projects.title}{" "}
-            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
-              {t.projects.titleAccent}
-            </span>
-          </h2>
-          <p className="text-muted-foreground">{t.projects.subtitle}</p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {projects.map((project) => (
-            <motion.div key={project.id} variants={cardVariants} className="h-full">
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </motion.div>
+    <Section id="projects" bordered>
+      <div className="mb-16 grid gap-8 md:mb-24 md:grid-cols-12 md:gap-16">
+        <div className="md:col-span-7">
+          <EditorialHeading eyebrow={`02 — ${t.projects.title}`} as="h2">
+            {t.projects.titleAccent}
+          </EditorialHeading>
+        </div>
+        <p className="text-base text-muted-foreground md:col-span-5 md:pt-4 md:text-lg">
+          {t.projects.subtitle}
+        </p>
       </div>
-    </section>
+
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10%" }}
+        className="grid gap-x-10 gap-y-20 md:grid-cols-2 md:gap-y-32"
+      >
+        {projects.map((project, i) => (
+          <motion.div
+            key={project.id}
+            variants={fadeUp}
+            className={i % 2 === 1 ? "md:mt-24" : ""}
+          >
+            <ProjectCard project={project} index={i} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </Section>
   );
 }

@@ -27,7 +27,7 @@ vi.mock("../components/ThemeToggle.js", () => ({
   ThemeToggle: () => <div data-testid="theme-toggle">Theme</div>,
 }));
 
-vi.mock("framer-motion", () => ({
+vi.mock("motion/react", () => ({
   motion: {
     span: ({ children, ...props }: React.HTMLAttributes<HTMLSpanElement>) => <span {...props}>{children}</span>,
     ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => <ul {...props}>{children}</ul>,

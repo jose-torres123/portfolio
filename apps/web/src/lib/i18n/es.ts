@@ -37,7 +37,7 @@ export const es: Translations = {
     items: [
       {
         id: "1",
-        title: "Plataforma iGaming (Pretty Technical)",
+        title: "Plataforma iGaming",
         description: "Desarrollo y optimización de productos de alto tráfico para la industria de iGaming y casinos en línea, trabajando en soluciones PAAS internas y plataformas personalizadas para clientes internacionales.",
       },
       {
