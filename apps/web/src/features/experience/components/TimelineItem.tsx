@@ -11,9 +11,10 @@ export function TimelineItem({ experience, index }: TimelineItemProps): React.JS
     <motion.li
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ backgroundColor: "var(--color-muted)", x: 6 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-12 gap-6 border-t border-border py-10 transition-colors last:border-b hover:bg-muted/40 md:gap-10 md:py-12"
+      className="grid grid-cols-12 gap-6 border-t border-border py-10 last:border-b md:gap-10 md:py-12"
     >
       <span className="col-span-12 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground md:col-span-3">
         {experience.period}

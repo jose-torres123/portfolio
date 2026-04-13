@@ -57,15 +57,10 @@ export function Navbar(): React.JSX.Element {
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
-  const handleLinkClick = useCallback((href: string, e: React.MouseEvent): void => {
-    e.preventDefault();
+  const handleLinkClick = useCallback((href: string): void => {
     setMenuOpen(false);
     setActiveSection(href);
-    const id = href.replace("#", "");
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 320);
+    // Lenis SmoothScroll intercepts anchor clicks automatically via document click handler
   }, []);
 
   return (
@@ -147,7 +142,7 @@ export function Navbar(): React.JSX.Element {
               >
                 <a
                   href={link.href}
-                  onClick={(e) => { handleLinkClick(link.href, e); }}
+                  onClick={() => { handleLinkClick(link.href); }}
                   className={`block py-4 font-display text-2xl tracking-tight ${
                     activeSection === link.href ? "text-foreground" : "text-muted-foreground"
                   }`}

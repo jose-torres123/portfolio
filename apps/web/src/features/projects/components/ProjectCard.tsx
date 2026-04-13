@@ -49,6 +49,7 @@ export function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Ele
       whileHover="hover"
       initial="rest"
       animate="rest"
+      data-cursor="view"
     >
       {/* Cover placeholder */}
       <div className="relative aspect-4/3 w-full overflow-hidden">
@@ -58,7 +59,11 @@ export function ProjectCard({ project, index }: ProjectCardProps): React.JSX.Ele
             y: imageY,
             background: `linear-gradient(135deg, ${getGradient(index)[0]}, ${getGradient(index)[1]})`,
           }}
-          variants={{ rest: {}, hover: {} }}
+          variants={{
+            rest: { scale: 1 },
+            hover: { scale: 1.03 },
+          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 flex items-center justify-center"
         >
           <span className="select-none px-6 text-center font-display text-4xl tracking-tight text-white/10 md:text-6xl">

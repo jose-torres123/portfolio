@@ -17,6 +17,10 @@ export function HeroSection(): React.JSX.Element {
   const taglineY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
+  // Dynamic blur — name loses focus as user scrolls, depth-of-field effect
+  const blurValue = useTransform(scrollYProgress, [0, 0.6], [0, 10]);
+  const nameBlur = useTransform(blurValue, (v) => `blur(${String(v)}px)`);
+
   return (
     <Section
       id="hero"
@@ -43,9 +47,9 @@ export function HeroSection(): React.JSX.Element {
           </span>
         </motion.div>
 
-        {/* Oversized name with parallax */}
+        {/* Oversized name with parallax + depth-of-field blur */}
         <motion.h1
-          style={{ y: nameY }}
+          style={{ y: nameY, filter: nameBlur }}
           className="font-display text-[clamp(3rem,14vw,11rem)] leading-[0.85] tracking-[-0.04em] text-foreground"
         >
           <RevealText as="span" delay={0.1}>

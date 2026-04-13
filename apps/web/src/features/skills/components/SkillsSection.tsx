@@ -41,7 +41,9 @@ export function SkillsSection(): React.JSX.Element {
             <motion.li
               key={key}
               variants={fadeUp}
-              className="group grid grid-cols-12 gap-6 border-t border-border py-8 transition-colors last:border-b hover:bg-muted/40 md:gap-10 md:py-10"
+              whileHover={{ backgroundColor: "var(--color-muted)", x: 6 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="group grid grid-cols-12 gap-6 border-t border-border py-8 last:border-b md:gap-10 md:py-10"
             >
               <span className="col-span-2 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground md:col-span-1">
                 {String(i + 1).padStart(2, "0")}
