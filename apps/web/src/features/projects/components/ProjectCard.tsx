@@ -14,7 +14,8 @@ const GRADIENT_PAIRS = [
 ] as const;
 
 function getGradient(index: number): readonly [string, string] {
-  return GRADIENT_PAIRS[index % GRADIENT_PAIRS.length]!;
+  const pair = GRADIENT_PAIRS[index % GRADIENT_PAIRS.length];
+  return pair ?? GRADIENT_PAIRS[0];
 }
 
 interface ProjectCardProps {
