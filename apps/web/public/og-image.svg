@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background — dark editorial -->
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="400" y1="0" x2="400" y2="630" stroke="white" stroke-opacity="0.04"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="white" stroke-opacity="0.04"/>
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="white" stroke-opacity="0.04"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="white" stroke-opacity="0.04"/>
+
+  <!-- Eyebrow -->
+  <text x="80" y="220" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="13" letter-spacing="0.2em" fill="white" fill-opacity="0.35" text-transform="uppercase">PORTFOLIO — 2026</text>
+
+  <!-- Name — large editorial display -->
+  <text x="76" y="320" font-family="'Archivo', system-ui, sans-serif" font-size="96" font-weight="700" letter-spacing="-0.04em" fill="white" fill-opacity="0.95">José</text>
+  <text x="76" y="420" font-family="'Archivo', system-ui, sans-serif" font-size="96" font-weight="700" letter-spacing="-0.04em" fill="white" fill-opacity="0.95">Torres</text>
+
+  <!-- Role -->
+  <text x="80" y="470" font-family="'Space Grotesk', system-ui, sans-serif" font-size="22" font-weight="400" fill="white" fill-opacity="0.45">Systems Engineer &amp; Full Stack Developer</text>
+
+  <!-- Tech tags — mono style -->
+  <text x="80" y="530" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="12" letter-spacing="0.15em" fill="white" fill-opacity="0.25">REACT · TYPESCRIPT · NODE.JS · NEXT.JS · TAILWIND · SUPABASE</text>
+
+  <!-- Accent line -->
+  <rect x="80" y="560" width="80" height="2" fill="#3b82f6" fill-opacity="0.8"/>
+
+  <!-- Number index — editorial detail -->
+  <text x="1060" y="580" font-family="'Archivo', system-ui, sans-serif" font-size="120" font-weight="700" letter-spacing="-0.04em" fill="white" fill-opacity="0.03">01</text>
+</svg>
