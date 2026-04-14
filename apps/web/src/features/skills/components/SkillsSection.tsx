@@ -5,9 +5,9 @@ import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/i
 const CATEGORY_KEYS = ["frontend", "backend", "tools"] as const;
 
 const CATEGORY_SKILLS: readonly string[][] = [
-  ["React.js", "Next.js", "TypeScript", "Svelte", "shadcn/ui", "Redux.js", "Tailwind CSS", "Zod"],
-  ["Node.js", "Express.js", "GraphQL", "RESTful APIs", "React Query", "Apollo", "Docker", "PostgreSQL", "MySQL"],
-  ["Git", "CI/CD", "SonarQube", "Playwright", "Agile", "React Native", "Ionic", "MCP", "AI-Assisted Dev"],
+  ["React.js", "Next.js", "TypeScript", "Svelte", "shadcn/ui", "Redux.js", "Tailwind CSS", "Zod", "React Native", "Framer Motion", "Cypress", "Vite", "Webpack"],
+  ["Node.js", "Express.js", "GraphQL", "RESTful APIs", "React Query", "Apollo", "Docker", "PostgreSQL", "MySQL", "MongoDB", "Prisma", "Redis", "AWS", "Firebase", "Supabase"],
+  ["Git", "CI/CD", "SonarQube", "Playwright", "Agile Methodologies",  "MCP", "AI-Assisted Dev", "Claude Code"],
 ];
 
 export function SkillsSection(): React.JSX.Element {

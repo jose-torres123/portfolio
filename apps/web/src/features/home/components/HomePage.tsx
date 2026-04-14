@@ -10,11 +10,16 @@ export function HomePage(): React.JSX.Element {
   return (
     <Layout>
       <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <ContactSection />
+      {/* Spacer — reserves the height the fixed hero occupies in document flow */}
+      <div className="h-screen" aria-hidden="true" />
+      {/* Content slides over the fixed hero */}
+      <div className="relative z-10 bg-background">
+        <AboutSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <ContactSection />
+      </div>
     </Layout>
   );
 }

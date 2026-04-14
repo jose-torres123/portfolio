@@ -52,7 +52,6 @@ export function ProjectsSection(): React.JSX.Element {
           <motion.div
             key={project.id}
             variants={fadeUp}
-            className={i % 2 === 1 ? "md:mt-24" : ""}
           >
             <ProjectCard project={project} index={i} />
           </motion.div>

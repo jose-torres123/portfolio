@@ -29,20 +29,52 @@ export function SmoothScroll({ children }: { children: ReactNode }): React.JSX.E
     }
     requestAnimationFrame(raf);
 
+    // Disable browser's native scroll restoration — we handle it manually
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    // Restore saved scroll position on refresh
+    const saved = sessionStorage.getItem("scrollY");
+    if (saved) {
+      const y = Number(saved);
+      if (y > 0) {
+        // Wait for DOM to be fully laid out before restoring
+        requestAnimationFrame(() => {
+          lenis.scrollTo(y, { immediate: true });
+        });
+      }
+      sessionStorage.removeItem("scrollY");
+    }
+
+    // Save scroll position before unload (refresh / close)
+    function saveScroll(): void {
+      sessionStorage.setItem("scrollY", String(Math.round(lenis.scroll)));
+    }
+    window.addEventListener("beforeunload", saveScroll);
+
     // Support native anchor links (#about, #projects, etc.)
     function handleAnchorClick(e: MouseEvent): void {
       const target = (e.target as HTMLElement).closest("a[href^='#']");
       if (!target) return;
       const id = (target as HTMLAnchorElement).getAttribute("href");
       if (!id || id === "#") return;
+      e.preventDefault();
+
+      // Hero is position:fixed — scroll to top instead of targeting the element
+      if (id === "#hero") {
+        lenis.scrollTo(0);
+        return;
+      }
+
       const el = document.querySelector(id);
       if (!el) return;
-      e.preventDefault();
       lenis.scrollTo(el as HTMLElement, { offset: -64 });
     }
     document.addEventListener("click", handleAnchorClick);
 
     return () => {
+      window.removeEventListener("beforeunload", saveScroll);
       document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
       lenisRef.current = null;

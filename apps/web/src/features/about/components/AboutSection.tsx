@@ -56,7 +56,7 @@ export function AboutSection(): React.JSX.Element {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
-        className="mt-20 grid grid-cols-2 gap-px overflow-hidden border-t border-border bg-border md:mt-28 md:grid-cols-4"
+        className="mt-20 grid grid-cols-2 gap-px overflow-hidden border-t border-border md:mt-28 md:grid-cols-4"
       >
         {statLabels.map((label, i) => (
           <motion.div

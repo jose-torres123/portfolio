@@ -12,7 +12,7 @@ export function Footer(): React.JSX.Element {
   const { t } = useI18n();
 
   return (
-    <footer className="border-t border-border">
+    <footer className="relative z-10 border-t border-border bg-background">
       <div className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-12 lg:px-16">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
