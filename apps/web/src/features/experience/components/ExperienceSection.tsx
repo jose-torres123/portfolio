@@ -3,10 +3,10 @@ import { TimelineItem } from "./TimelineItem.js";
 import { Section, EditorialHeading } from "@/shared/templates/index.js";
 
 const EXPERIENCE_TECH: string[][] = [
-  ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind", "Playwright", "SonarQube"],
-  ["Laravel", "PHP", "WordPress", "PostgreSQL", "REST APIs"],
+  ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind CSS", "Playwright", "SonarQube", "REST APIs", "Redux.js", "Zod", "Vite", "Webpack", "shadcn/ui"],
+  ["Laravel", "PHP", "WordPress", "PostgreSQL", "REST APIs", "Stripe", "Docker", "Supabase"],
   ["React Native", "Node.js", "Express.js", "React.js", "TypeScript"],
-  ["Laravel", "CodeIgniter", "PHP", "Ionic", "MySQL"],
+  ["Laravel", "CodeIgniter", "PHP", "Ionic", "MySQL","JavaScript", "HTML", "CSS"],
 ];
 
 export function ExperienceSection(): React.JSX.Element {

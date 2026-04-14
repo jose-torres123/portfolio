@@ -3,7 +3,7 @@ import { useI18n } from "@/lib/i18n/index.js";
 import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/index.js";
 import { PhotoGallery } from "./PhotoGallery.js";
 
-const STAT_VALUES = ["7+", "4", "∞", "3+"];
+const STAT_VALUES = ["6+", "4", "∞", "3+"];
 
 export function AboutSection(): React.JSX.Element {
   const { t } = useI18n();

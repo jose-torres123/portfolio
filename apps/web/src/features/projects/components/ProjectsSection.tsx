@@ -4,12 +4,12 @@ import { ProjectCard } from "./ProjectCard.js";
 import { Section, EditorialHeading, fadeUp, stagger } from "@/shared/templates/index.js";
 
 const PROJECT_META: { tags: string[]; github?: string | undefined; live?: string | undefined; featured: boolean }[] = [
-  { tags: ["React.js", "TypeScript", "Node.js", "PostgreSQL"], featured: true },
-  { tags: ["Laravel", "PHP", "PostgreSQL", "Stripe"], featured: true },
-  { tags: ["WordPress", "PHP", "REST APIs"], featured: false },
+  { tags: ["React.js", "Next.js", "TypeScript", "GraphQL", "Tailwind CSS", "Playwright", "SonarQube", "REST APIs", "Redux.js", "Zod", "Vite", "shadcn/ui"], featured: true },
+  { tags: ["Laravel", "PHP", "PostgreSQL", "Stripe", "Docker", "Supabase"], featured: true },
+  { tags: ["WordPress", "PHP", "REST APIs", "JavaScript", "HTML", "CSS"], featured: false },
   { tags: ["React Native", "TypeScript", "iOS", "Android"], featured: true },
-  { tags: ["React", "Tailwind CSS", "Framer Motion", "i18n"], github: "https://github.com/jose-torres123", live: "#", featured: true },
-  { tags: ["Ionic", "Laravel", "CodeIgniter", "REST APIs"], featured: false },
+  { tags: ["React", "Tailwind CSS", "Framer Motion", "i18n", "Vite", "Supabase", "vercel", "Playwright"], github: "https://github.com/jose-torres123", live: "#", featured: true },
+  { tags: ["Ionic", "Laravel", "CodeIgniter", "REST APIs", "MySQL"], featured: false },
 ];
 
 export function ProjectsSection(): React.JSX.Element {

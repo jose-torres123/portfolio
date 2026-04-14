@@ -24,6 +24,7 @@ export function RevealText({
   return (
     <Tag className={cn("inline-block", className)}>
       <motion.span
+        key={children}
         className="inline-flex flex-wrap"
         variants={stagger}
         initial="hidden"

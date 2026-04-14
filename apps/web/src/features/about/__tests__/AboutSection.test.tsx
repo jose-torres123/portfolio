@@ -109,7 +109,7 @@ describe("AboutSection", () => {
 
   it("should render stat values", () => {
     render(<AboutSection />);
-    expect(screen.getByText("7+")).toBeInTheDocument();
+    expect(screen.getByText("6+")).toBeInTheDocument();
     expect(screen.getByText("4")).toBeInTheDocument();
     expect(screen.getByText("∞")).toBeInTheDocument();
     expect(screen.getByText("3+")).toBeInTheDocument();
